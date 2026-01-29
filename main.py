@@ -30,3 +30,20 @@ def get_product(id: int):
 def create_product(product: Product):
     products.append(product)
     return product
+
+@app.put("/products/{id}")
+def update_product(id: int, product: Product):
+    for i in products:
+        if i.id == id:
+            i.name = product.name
+            i.quantity = product.quantity
+            i.price = product.price
+            return product
+    return {"message": f"Product with id {id} not found"}
+@app.delete("/products/{id}")
+def delete_product(id: int):
+    for index, p in enumerate(products):
+        if p.id == id:
+            del products[index]
+            return products
+    return {"message": f"Product with id {id} not found"}
