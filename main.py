@@ -1,8 +1,9 @@
-from fastapi import FastAPI
+from fastapi import FastAPI,Header, HTTPException,Depends,Response
 from models import Product
 from typing import List
 
 app = FastAPI()
+API_KEY = "deepak"
 
 products: List[Product] = [
     Product(id=1, name="product_1", quantity=2, price=3),
@@ -15,23 +16,26 @@ products: List[Product] = [
 def hello_world():
     return {"message": "Hello World This is Deepak Sai"}
 
-@app.get("/products")
+def verify_api_key(api_key: str = Header(..., alias="X-API-Key")):
+    if api_key != API_KEY:
+        raise HTTPException(status_code=401, detail="Invalid API Key")
+@app.get("/products",dependencies=[Depends(verify_api_key)])
 def get_products():
     return products
 
-@app.get("/products/{id}")
+@app.get("/products/{id}",dependencies=[Depends(verify_api_key)])
 def get_product(id: int):
     for p in products:
         if p.id == id:
             return p
     return {"message": f"Product with id {id} not found"}
 
-@app.post("/products")
+@app.post("/products",dependencies=[Depends(verify_api_key)])
 def create_product(product: Product):
     products.append(product)
     return product
 
-@app.put("/products/{id}")
+@app.put("/products/{id}",dependencies=[Depends(verify_api_key)])
 def update_product(id: int, product: Product):
     for i in products:
         if i.id == id:
@@ -40,7 +44,15 @@ def update_product(id: int, product: Product):
             i.price = product.price
             return product
     return {"message": f"Product with id {id} not found"}
-@app.delete("/products/{id}")
+
+@app.head("/products/{id}",dependencies=[Depends(verify_api_key)])
+def check_product(id: int):
+    for p in products:
+        if p.id == id:
+            return Response(status_code=200, headers={"X-Product-Exists": "true"})
+    return Response(status_code=404)
+
+@app.delete("/products/{id}",dependencies=[Depends(verify_api_key)])
 def delete_product(id: int):
     for index, p in enumerate(products):
         if p.id == id:
