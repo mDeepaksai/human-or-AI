@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+pydantic
+numpy
+librosa
+soundfile
+scikit-learn
+joblib
