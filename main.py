@@ -9,7 +9,7 @@ app = FastAPI(title="AI Voice Detection API", version="1.0")
 classifier = VoiceClassifier()
 
 # Set your secret API key
-API_KEY = "sk_test_123456789"
+API_KEY = "deeps@simi"
 
 # Request body model
 class VoiceRequest(BaseModel):
