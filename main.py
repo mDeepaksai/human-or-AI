@@ -20,6 +20,12 @@ def verify_api_key(x_api_key: str = Header(...)):
     if x_api_key != API_KEY:
         raise HTTPException(status_code=401, detail="Unauthorized")
 
+@app.get("/")
+def get_welcome_message():
+    return {"message :" "Welcome to the AI Voice Detection API",
+              "instructions :" "Use /api/voice-detection endpoint to analyze audio.",
+              "built_by :" "Mallarpu Deepak sai and Smiriti Kumari"
+              }
 
 @app.post("/api/voice-detection")
 def detect_voice(
