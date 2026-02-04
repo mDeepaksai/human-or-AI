@@ -19,6 +19,11 @@ class VoiceRequest(BaseModel):
 def verify_api_key(x_api_key: str = Header(...)):
     if x_api_key != API_KEY:
         raise HTTPException(status_code=401, detail="Unauthorized")
+@app.get("/api/voice-detection")
+def browser_hint():
+    return {
+        "message": "This endpoint accepts POST requests only. Use Swagger or API client."
+    }
 
 @app.get("/")
 def get_welcome_message():
