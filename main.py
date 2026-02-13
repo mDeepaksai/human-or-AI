@@ -27,9 +27,11 @@ def browser_hint():
 
 @app.get("/")
 def get_welcome_message():
-    return {"message :" "Welcome to the AI Voice Detection API",
-              "instructions :" "Use /api/voice-detection endpoint to analyze audio.",
-              "built_by :" "Mallarpu Deepak sai and Smiriti Kumari"
+    return {"message": "Welcome to the AI Voice Detection API",
+        "docs": "/docs",
+        "endpoint": "/api/voice-detection",
+        "instructions": "Use /api/voice-detection endpoint to analyze audio.",
+        "built_by": "Mallarpu Deepak sai and Smiriti Kumari"
               }
 
 @app.post("/api/voice-detection")
