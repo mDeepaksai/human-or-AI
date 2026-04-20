@@ -1,0 +1,13 @@
+# Environment variables (sensitive)
+.env
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Model file (large binary)
+*.pkl
+
+# VS Code
+.vscode/
