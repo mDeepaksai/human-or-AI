@@ -7,6 +7,89 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="index.css">
+
+<style>
+  /* ── Live Stats Bar ── */
+  .live-stats-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin-top: 28px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 100px;
+    padding: 10px 24px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    animation: fadeUp 0.7s ease 0.15s both;
+  }
+
+  .live-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px;
+  }
+
+  .live-stat:not(:last-child) {
+    border-right: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .live-stat-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: -0.5px;
+    line-height: 1;
+  }
+
+  .live-stat-num.loading {
+    animation: counterPulse 1.2s ease-in-out infinite;
+  }
+
+  .live-stat-lbl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  .live-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 6px var(--accent);
+    animation: pulse 2s ease-in-out infinite;
+    margin-right: 8px;
+    flex-shrink: 0;
+  }
+
+  .live-label-row {
+    display: flex;
+    align-items: center;
+    margin-top: 4px;
+  }
+
+  @keyframes counterPulse {
+    0%, 100% { opacity: 0.3; }
+    50%       { opacity: 1; }
+  }
+
+  @keyframes countUp {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .stat-updated {
+    animation: countUp 0.4s ease both;
+  }
+</style>
 </head>
 <body>
 
@@ -44,6 +127,32 @@
     </div>
     <h1>Is that voice<br><em>human or AI?</em></h1>
     <p class="hero-sub">Upload any MP3 or WAV file — or record live. Our model analyses 88 acoustic features to classify the voice in seconds.</p>
+
+    <!-- ── Live Stats Bar ── -->
+    <div class="live-stats-bar" id="liveStatsBar">
+      <div class="live-stat">
+        <div class="live-stat-num loading" id="globalVisitors">—</div>
+        <div class="live-label-row">
+          <div class="live-dot"></div>
+          <div class="live-stat-lbl">Visitors</div>
+        </div>
+      </div>
+      <div class="live-stat">
+        <div class="live-stat-num loading" id="globalAnalyses">—</div>
+        <div class="live-label-row">
+          <div class="live-dot"></div>
+          <div class="live-stat-lbl">Analyses Run</div>
+        </div>
+      </div>
+      <div class="live-stat">
+        <div class="live-stat-num" id="globalLangs">5</div>
+        <div class="live-label-row">
+          <div class="live-dot" style="background:var(--warn);box-shadow:0 0 6px var(--warn)"></div>
+          <div class="live-stat-lbl">Languages</div>
+        </div>
+      </div>
+    </div>
+    <!-- ── End Live Stats Bar ── -->
   </div>
 
   <!-- API Key -->
@@ -118,9 +227,7 @@
         </button>
         <div class="mic-label" id="micLabel">Click to start recording</div>
         <div class="mic-timer" id="micTimer">0:00</div>
-        <div class="mic-viz" id="micViz">
-          <!-- bars added by JS -->
-        </div>
+        <div class="mic-viz" id="micViz"></div>
         <div class="mic-controls">
           <button class="mic-action danger" id="micDiscard" disabled>Discard</button>
           <button class="mic-action" id="micUse" disabled>Use Recording</button>
@@ -210,7 +317,6 @@
 
       <div class="explanation-box" id="explanationBox"></div>
 
-      <!-- Result Actions -->
       <div class="result-actions">
         <button class="result-action-btn" id="shareCardBtn">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -307,8 +413,21 @@
       </svg>
     </button>
     <div class="stats-title">Your Detection Stats</div>
+
+    <!-- Global live counters inside modal -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;">
+      <div style="background:rgba(0,245,196,0.05);border:1px solid rgba(0,245,196,0.2);border-radius:12px;padding:14px;text-align:center;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:500;color:var(--accent)" id="modalGlobalVisitors">—</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);margin-top:4px;letter-spacing:1px;text-transform:uppercase;">Total Visitors</div>
+      </div>
+      <div style="background:rgba(0,245,196,0.05);border:1px solid rgba(0,245,196,0.2);border-radius:12px;padding:14px;text-align:center;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:500;color:var(--accent)" id="modalGlobalAnalyses">—</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);margin-top:4px;letter-spacing:1px;text-transform:uppercase;">Global Analyses</div>
+      </div>
+    </div>
+
     <div class="stats-grid">
-      <div class="stat-box"><div class="stat-num" id="statTotal">0</div><div class="stat-lbl">Total</div></div>
+      <div class="stat-box"><div class="stat-num" id="statTotal">0</div><div class="stat-lbl">Your Total</div></div>
       <div class="stat-box"><div class="stat-num" id="statHuman" style="color:var(--accent)">0</div><div class="stat-lbl">Human</div></div>
       <div class="stat-box"><div class="stat-num" id="statAI" style="color:var(--danger)">0</div><div class="stat-lbl">AI</div></div>
     </div>
