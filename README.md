@@ -14,9 +14,9 @@
 
 ## Screenshots
 
-![VoiceID Hero](screenshot1.png)
+![VoiceID Hero](/logo.png)
 
-![VoiceID Upload](screenshot2.png)
+![VoiceID Upload](/imaage.png)
 
 ---
 
