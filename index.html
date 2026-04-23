@@ -1,469 +1,615 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="google-site-verification" content="UgdryMQ9azzy3jHDT-Cei_ZloKra7YX20MIUBmCc5i4" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VoiceID — Free AI Voice Detector | Human or AI Audio Checker</title>
-<meta name="description" content="Detect if a voice is AI-generated or human in seconds. Upload any MP3 or WAV file. Supports English, Tamil, Hindi, Malayalam, Telugu. Free. No login required.">
-<meta name="keywords" content="AI voice detector, deepfake audio detector, human or AI voice, voice detection tool, free AI detector">
-<meta name="author" content="Mallarpu Deepak Sai">
+  <meta charset="UTF-8">
+  <meta name="google-site-verification" content="UgdryMQ9azzy3jHDT-Cei_ZloKra7YX20MIUBmCc5i4" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VoiceID — Free AI Voice Detector | Human or AI Audio Checker</title>
+  <meta name="description"
+    content="Detect if a voice is AI-generated or human in seconds. Upload any MP3 or WAV file. Supports English, Tamil, Hindi, Malayalam, Telugu. Free. No login required.">
+  <meta name="keywords"
+    content="AI voice detector, deepfake audio detector, human or AI voice, voice detection tool, free AI detector">
+  <meta name="author" content="Mallarpu Deepak Sai">
 
-<!-- Open Graph (makes LinkedIn/WhatsApp previews look good) -->
-<meta property="og:title" content="VoiceID — Detect AI Generated Voices Free">
-<meta property="og:description" content="Upload any audio file and know if it's human or AI in seconds. 88 acoustic features. 5 languages.">
-<meta property="og:url" content="https://mdeepaksai.github.io/human-or-AI/">
-<meta property="og:type" content="website">
+  <!-- Open Graph (makes LinkedIn/WhatsApp previews look good) -->
+  <meta property="og:title" content="VoiceID — Detect AI Generated Voices Free">
+  <meta property="og:description"
+    content="Upload any audio file and know if it's human or AI in seconds. 88 acoustic features. 5 languages.">
+  <meta property="og:url" content="https://mdeepaksai.github.io/human-or-AI/">
+  <meta property="og:type" content="website">
 
-<!-- Twitter card -->
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="VoiceID — Detect AI Generated Voices">
-<meta name="twitter:description" content="Free tool to detect AI-generated voices. Upload MP3 or WAV. Results in seconds.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="index.css">
-
-<style>
-  /* ── Live Stats Bar ── */
-  .live-stats-bar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0;
-    margin-top: 28px;
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.07);
-    border-radius: 100px;
-    padding: 10px 24px;
-    width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
-    animation: fadeUp 0.7s ease 0.15s both;
+  <!-- Twitter card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="VoiceID — Detect AI Generated Voices">
+  <meta name="twitter:description"
+    content="Free tool to detect AI-generated voices. Upload MP3 or WAV. Results in seconds.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "VoiceID",
+  "url": "https://mdeepaksai.github.io/human-or-AI/",
+  "description": "Free AI voice detector. Upload MP3 or WAV to detect if audio is human or AI-generated. Supports English, Tamil, Hindi, Malayalam, Telugu.",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Web",
+  "inLanguage": ["en", "ta", "hi", "ml", "te"],
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Mallarpu Deepak Sai"
   }
+}
+</script>
+  <style>
+    /* ── Live Stats Bar ── */
+    .hero-tagline {
+      font-size: 1.1rem;
+      color: var(--muted);
+      margin-top: 8px;
+    }
 
-  .live-stat {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0 20px;
-  }
+    .live-stats-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      margin-top: 28px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 100px;
+      padding: 10px 24px;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+      animation: fadeUp 0.7s ease 0.15s both;
+    }
 
-  .live-stat:not(:last-child) {
-    border-right: 1px solid rgba(255,255,255,0.07);
-  }
+    .live-stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 20px;
+    }
 
-  .live-stat-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 18px;
-    font-weight: 500;
-    color: var(--accent);
-    letter-spacing: -0.5px;
-    line-height: 1;
-  }
+    .live-stat:not(:last-child) {
+      border-right: 1px solid rgba(255, 255, 255, 0.07);
+    }
 
-  .live-stat-num.loading {
-    animation: counterPulse 1.2s ease-in-out infinite;
-  }
+    .live-stat-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: -0.5px;
+      line-height: 1;
+    }
 
-  .live-stat-lbl {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    color: var(--muted);
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin-top: 4px;
-  }
+    .live-stat-num.loading {
+      animation: counterPulse 1.2s ease-in-out infinite;
+    }
 
-  .live-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--accent);
-    box-shadow: 0 0 6px var(--accent);
-    animation: pulse 2s ease-in-out infinite;
-    margin-right: 8px;
-    flex-shrink: 0;
-  }
+    .live-stat-lbl {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
 
-  .live-label-row {
-    display: flex;
-    align-items: center;
-    margin-top: 4px;
-  }
+    .live-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 6px var(--accent);
+      animation: pulse 2s ease-in-out infinite;
+      margin-right: 8px;
+      flex-shrink: 0;
+    }
 
-  @keyframes counterPulse {
-    0%, 100% { opacity: 0.3; }
-    50%       { opacity: 1; }
-  }
+    .live-label-row {
+      display: flex;
+      align-items: center;
+      margin-top: 4px;
+    }
 
-  @keyframes countUp {
-    from { opacity: 0; transform: translateY(6px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
+    @keyframes counterPulse {
 
-  .stat-updated {
-    animation: countUp 0.4s ease both;
-  }
-</style>
+      0%,
+      100% {
+        opacity: 0.3;
+      }
+
+      50% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes countUp {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .stat-updated {
+      animation: countUp 0.4s ease both;
+    }
+  </style>
 </head>
+
 <body>
 
-<div class="container">
+  <div class="container">
 
-  <!-- Header -->
-  <header>
-    <div class="logo">
-      <div class="logo-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#00f5c4" stroke-width="2">
-          <path d="M12 1v22M8 5v14M4 9v6M16 5v14M20 9v6"/>
-        </svg>
-      </div>
-      <div class="logo-text">Voice<span>ID</span></div>
-    </div>
-    <div class="header-right">
-      <button class="stats-pill" id="statsBtn">
-        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
-        </svg>
-        <span id="totalCount">0</span> analyses
-      </button>
-      <div class="status-pill">
-        <div class="status-dot"></div>
-        <span>API LIVE</span>
-      </div>
-    </div>
-  </header>
-
-  <!-- Hero -->
-  <div class="hero">
-    <div class="hero-tag">
-      <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><circle cx="5" cy="5" r="5"/></svg>
-      Audio Forensics
-    </div>
-    <h1>Is that voice<br><em>human or AI?</em></h1>
-    <p class="hero-sub">Upload any MP3 or WAV file — or record live. Our model analyses 88 acoustic features to classify the voice in seconds.</p>
-
-    <!-- ── Live Stats Bar ── -->
-    <div class="live-stats-bar" id="liveStatsBar">
-      <div class="live-stat">
-        <div class="live-stat-num loading" id="globalVisitors">—</div>
-        <div class="live-label-row">
-          <div class="live-dot"></div>
-          <div class="live-stat-lbl">Visitors</div>
-        </div>
-      </div>
-      <div class="live-stat">
-        <div class="live-stat-num loading" id="globalAnalyses">—</div>
-        <div class="live-label-row">
-          <div class="live-dot"></div>
-          <div class="live-stat-lbl">Analyses Run</div>
-        </div>
-      </div>
-      <div class="live-stat">
-        <div class="live-stat-num" id="globalLangs">5</div>
-        <div class="live-label-row">
-          <div class="live-dot" style="background:var(--warn);box-shadow:0 0 6px var(--warn)"></div>
-          <div class="live-stat-lbl">Languages</div>
-        </div>
-      </div>
-    </div>
-    <!-- ── End Live Stats Bar ── -->
-  </div>
-
-  <!-- API Key -->
-  <div class="api-section card" style="margin-bottom: 16px;">
-    <div class="field-label">API Key</div>
-    <div class="input-wrap">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-      </svg>
-      <input type="password" id="apiKeyInput" placeholder="Enter your API key" value="deeps@simi">
-      <button class="toggle-key" id="toggleKey" title="Show/hide key">
-        <svg id="eyeIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
-        </svg>
-      </button>
-    </div>
-  </div>
-
-  <!-- Language -->
-  <div class="lang-section card" style="margin-bottom: 16px;">
-    <div class="field-label">Language</div>
-    <div class="lang-pills">
-      <button class="lang-pill active" data-lang="english">English</button>
-      <button class="lang-pill" data-lang="tamil">Tamil</button>
-      <button class="lang-pill" data-lang="hindi">Hindi</button>
-      <button class="lang-pill" data-lang="malayalam">Malayalam</button>
-      <button class="lang-pill" data-lang="telugu">Telugu</button>
-    </div>
-  </div>
-
-  <!-- Input Mode Tabs -->
-  <div class="input-mode-tabs">
-    <button class="mode-tab active" data-mode="upload">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
-      </svg>
-      Upload File
-    </button>
-    <button class="mode-tab" data-mode="record">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/>
-      </svg>
-      Record Live
-    </button>
-  </div>
-
-  <!-- Upload Section -->
-  <div class="upload-section card">
-    <div class="field-label" style="margin-bottom: 12px;">Audio File</div>
-
-    <!-- Upload Panel -->
-    <div class="input-panel active" id="uploadPanel">
-      <div class="drop-zone" id="dropZone">
-        <input type="file" id="fileInput" accept=".mp3,.wav">
-        <div class="drop-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00f5c4" stroke-width="1.5">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
+    <!-- Header -->
+    <header>
+      <div class="logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#00f5c4" stroke-width="2">
+            <path d="M12 1v22M8 5v14M4 9v6M16 5v14M20 9v6" />
           </svg>
         </div>
-        <div class="drop-title">Drop your audio file here</div>
-        <div class="drop-sub">or <span>click to browse</span> &nbsp;·&nbsp; MP3 or WAV &nbsp;·&nbsp; max 10MB</div>
+        <div class="logo-text">Voice<span>ID</span></div>
       </div>
+      <div class="header-right">
+        <button class="stats-pill" id="statsBtn">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="20" x2="18" y2="10" />
+            <line x1="12" y1="20" x2="12" y2="4" />
+            <line x1="6" y1="20" x2="6" y2="14" />
+          </svg>
+          <span id="totalCount">0</span> analyses
+        </button>
+        <div class="status-pill">
+          <div class="status-dot"></div>
+          <span>API LIVE</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <div class="hero">
+      <div class="hero-tag">
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor">
+          <circle cx="5" cy="5" r="5" />
+        </svg>
+        Audio Forensics
+      </div>
+      <h1>AI Voice Detector — Free Deepfake Audio Checker</h1>
+      <p class="hero-tagline">Is that voice <em>human or AI?</em></p>
+      <p class="hero-sub">Upload any MP3 or WAV file — or record live. Our model analyses 88 acoustic features to
+        classify the voice in seconds.</p>
+
+      <!-- ── Live Stats Bar ── -->
+      <div class="live-stats-bar" id="liveStatsBar">
+        <div class="live-stat">
+          <div class="live-stat-num loading" id="globalVisitors">—</div>
+          <div class="live-label-row">
+            <div class="live-dot"></div>
+            <div class="live-stat-lbl">Visitors</div>
+          </div>
+        </div>
+        <div class="live-stat">
+          <div class="live-stat-num loading" id="globalAnalyses">—</div>
+          <div class="live-label-row">
+            <div class="live-dot"></div>
+            <div class="live-stat-lbl">Analyses Run</div>
+          </div>
+        </div>
+        <div class="live-stat">
+          <div class="live-stat-num" id="globalLangs">5</div>
+          <div class="live-label-row">
+            <div class="live-dot" style="background:var(--warn);box-shadow:0 0 6px var(--warn)"></div>
+            <div class="live-stat-lbl">Languages</div>
+          </div>
+        </div>
+      </div>
+      <!-- ── End Live Stats Bar ── -->
     </div>
 
-    <!-- Record Panel -->
-    <div class="input-panel" id="recordPanel">
-      <div class="mic-panel">
-        <button class="mic-btn" id="micBtn">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00f5c4" stroke-width="1.5">
-            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/>
+    <!-- API Key -->
+    <div class="api-section card" style="margin-bottom: 16px;">
+      <div class="field-label">API Key</div>
+      <div class="input-wrap">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+          <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+        </svg>
+        <input type="password" id="apiKeyInput" placeholder="Enter your API key" value="deeps@simi">
+        <button class="toggle-key" id="toggleKey" title="Show/hide key">
+          <svg id="eyeIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+            <circle cx="12" cy="12" r="3" />
           </svg>
         </button>
-        <div class="mic-label" id="micLabel">Click to start recording</div>
-        <div class="mic-timer" id="micTimer">0:00</div>
-        <div class="mic-viz" id="micViz"></div>
-        <div class="mic-controls">
-          <button class="mic-action danger" id="micDiscard" disabled>Discard</button>
-          <button class="mic-action" id="micUse" disabled>Use Recording</button>
-        </div>
       </div>
     </div>
 
-    <!-- File info row -->
-    <div class="file-info" id="fileInfo">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00f5c4" stroke-width="2">
-        <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
-      </svg>
-      <span class="file-name" id="fileName"></span>
-      <span class="file-size" id="fileSize"></span>
-      <button class="file-remove" id="fileRemove">
+    <!-- Language -->
+    <div class="lang-section card" style="margin-bottom: 16px;">
+      <div class="field-label">Language</div>
+      <div class="lang-pills">
+        <button class="lang-pill active" data-lang="english">English</button>
+        <button class="lang-pill" data-lang="tamil">Tamil</button>
+        <button class="lang-pill" data-lang="hindi">Hindi</button>
+        <button class="lang-pill" data-lang="malayalam">Malayalam</button>
+        <button class="lang-pill" data-lang="telugu">Telugu</button>
+      </div>
+    </div>
+
+    <!-- Input Mode Tabs -->
+    <div class="input-mode-tabs">
+      <button class="mode-tab active" data-mode="upload">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+          <polyline points="17 8 12 3 7 8" />
+          <line x1="12" y1="3" x2="12" y2="15" />
         </svg>
+        Upload File
+      </button>
+      <button class="mode-tab" data-mode="record">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+          <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+          <line x1="12" y1="19" x2="12" y2="23" />
+          <line x1="8" y1="23" x2="16" y2="23" />
+        </svg>
+        Record Live
       </button>
     </div>
 
-    <!-- Audio Player -->
-    <div class="audio-player" id="audioPlayer">
-      <button class="play-btn" id="playBtn">
-        <svg id="playIcon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-          <polygon points="5 3 19 12 5 21 5 3"/>
+    <!-- Upload Section -->
+    <div class="upload-section card">
+      <div class="field-label" style="margin-bottom: 12px;">Audio File</div>
+
+      <!-- Upload Panel -->
+      <div class="input-panel active" id="uploadPanel">
+        <div class="drop-zone" id="dropZone">
+          <input type="file" id="fileInput" accept=".mp3,.wav">
+          <div class="drop-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00f5c4" stroke-width="1.5">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="17 8 12 3 7 8" />
+              <line x1="12" y1="3" x2="12" y2="15" />
+            </svg>
+          </div>
+          <div class="drop-title">Drop your audio file here</div>
+          <div class="drop-sub">or <span>click to browse</span> &nbsp;·&nbsp; MP3 or WAV &nbsp;·&nbsp; max 10MB</div>
+        </div>
+      </div>
+
+      <!-- Record Panel -->
+      <div class="input-panel" id="recordPanel">
+        <div class="mic-panel">
+          <button class="mic-btn" id="micBtn">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00f5c4" stroke-width="1.5">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+              <line x1="12" y1="19" x2="12" y2="23" />
+              <line x1="8" y1="23" x2="16" y2="23" />
+            </svg>
+          </button>
+          <div class="mic-label" id="micLabel">Click to start recording</div>
+          <div class="mic-timer" id="micTimer">0:00</div>
+          <div class="mic-viz" id="micViz"></div>
+          <div class="mic-controls">
+            <button class="mic-action danger" id="micDiscard" disabled>Discard</button>
+            <button class="mic-action" id="micUse" disabled>Use Recording</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- File info row -->
+      <div class="file-info" id="fileInfo">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00f5c4" stroke-width="2">
+          <path d="M9 18V5l12-2v13" />
+          <circle cx="6" cy="18" r="3" />
+          <circle cx="18" cy="16" r="3" />
         </svg>
-      </button>
-      <div class="audio-progress-wrap">
-        <div class="audio-progress-track" id="progressTrack">
-          <div class="audio-progress-fill" id="progressFill"></div>
-        </div>
-        <div class="audio-time">
-          <span id="currentTime">0:00</span>
-          <span id="totalTime">0:00</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Waveform -->
-    <div class="waveform" id="waveform"></div>
-
-    <!-- Spectrogram -->
-    <div class="spectrogram-wrap" id="spectrogramWrap">
-      <div class="spectrogram-label">Spectrogram</div>
-      <canvas id="spectrogramCanvas" height="80"></canvas>
-    </div>
-
-    <!-- Loading -->
-    <div class="loading-state" id="loadingState">
-      <div class="scan-ring"></div>
-      <div class="loading-text">Analysing voice patterns<span class="loading-dots"></span></div>
-    </div>
-
-    <!-- Error -->
-    <div class="error-box" id="errorBox">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;margin-top:1px">
-        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
-      </svg>
-      <span id="errorMsg"></span>
-    </div>
-
-    <!-- Result -->
-    <div class="result-card card" id="resultCard">
-      <div class="result-header">
-        <div class="result-badge" id="resultBadge">
-          <div class="result-badge-dot"></div>
-          <span id="resultLabel"></span>
-        </div>
-        <div class="confidence-label">
-          <span id="confPercent"></span><span>% confidence</span>
-        </div>
-      </div>
-
-      <div class="conf-bar-wrap">
-        <div class="field-label">Confidence Score</div>
-        <div class="conf-bar-track">
-          <div class="conf-bar-fill" id="confBar"></div>
-        </div>
-      </div>
-
-      <div class="meta-grid">
-        <div class="meta-item"><div class="meta-key">File</div><div class="meta-val" id="metaFile">—</div></div>
-        <div class="meta-item"><div class="meta-key">Language</div><div class="meta-val" id="metaLang">—</div></div>
-        <div class="meta-item"><div class="meta-key">Process Time</div><div class="meta-val" id="metaTime">—</div></div>
-      </div>
-
-      <div class="explanation-box" id="explanationBox"></div>
-
-      <div class="result-actions">
-        <button class="result-action-btn" id="shareCardBtn">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
-            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+        <span class="file-name" id="fileName"></span>
+        <span class="file-size" id="fileSize"></span>
+        <button class="file-remove" id="fileRemove">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
           </svg>
-          Share Result
-        </button>
-        <button class="result-action-btn" id="copyResultBtn">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-          </svg>
-          Copy Link
-        </button>
-        <button class="result-action-btn" id="downloadBtn">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
-          </svg>
-          Export JSON
         </button>
       </div>
-    </div>
-  </div>
 
-  <!-- Analyse Button -->
-  <button class="analyse-btn" id="analyseBtn" disabled>
-    <div class="btn-inner">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-      </svg>
-      Analyse Voice
-    </div>
-  </button>
+      <!-- Audio Player -->
+      <div class="audio-player" id="audioPlayer">
+        <button class="play-btn" id="playBtn">
+          <svg id="playIcon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+            <polygon points="5 3 19 12 5 21 5 3" />
+          </svg>
+        </button>
+        <div class="audio-progress-wrap">
+          <div class="audio-progress-track" id="progressTrack">
+            <div class="audio-progress-fill" id="progressFill"></div>
+          </div>
+          <div class="audio-time">
+            <span id="currentTime">0:00</span>
+            <span id="totalTime">0:00</span>
+          </div>
+        </div>
+      </div>
 
-  <!-- History -->
-  <div class="history-section">
-    <div class="section-header">
-      <div class="section-title">Recent Analyses</div>
-      <button class="clear-btn" id="clearHistory">Clear all</button>
-    </div>
-    <div class="history-list" id="historyList">
-      <div class="empty-history">No analyses yet. Upload a file to get started.</div>
-    </div>
-  </div>
+      <!-- Waveform -->
+      <div class="waveform" id="waveform"></div>
 
-  <!-- Footer -->
-  <footer>
-    <div class="footer-text">Built by Mallarpu Deepak Sai &amp; Smriti Kumari</div>
-    <div class="footer-text">
-      <a href="https://human-or-ai-production-8e10.up.railway.app/docs" target="_blank">API Docs →</a>
+      <!-- Spectrogram -->
+      <div class="spectrogram-wrap" id="spectrogramWrap">
+        <div class="spectrogram-label">Spectrogram</div>
+        <canvas id="spectrogramCanvas" height="80"></canvas>
+      </div>
+
+      <!-- Loading -->
+      <div class="loading-state" id="loadingState">
+        <div class="scan-ring"></div>
+        <div class="loading-text">Analysing voice patterns<span class="loading-dots"></span></div>
+      </div>
+
+      <!-- Error -->
+      <div class="error-box" id="errorBox">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          style="flex-shrink:0;margin-top:1px">
+          <circle cx="12" cy="12" r="10" />
+          <line x1="12" y1="8" x2="12" y2="12" />
+          <line x1="12" y1="16" x2="12.01" y2="16" />
+        </svg>
+        <span id="errorMsg"></span>
+      </div>
+
+      <!-- Result -->
+      <div class="result-card card" id="resultCard">
+        <div class="result-header">
+          <div class="result-badge" id="resultBadge">
+            <div class="result-badge-dot"></div>
+            <span id="resultLabel"></span>
+          </div>
+          <div class="confidence-label">
+            <span id="confPercent"></span><span>% confidence</span>
+          </div>
+        </div>
+
+        <div class="conf-bar-wrap">
+          <div class="field-label">Confidence Score</div>
+          <div class="conf-bar-track">
+            <div class="conf-bar-fill" id="confBar"></div>
+          </div>
+        </div>
+
+        <div class="meta-grid">
+          <div class="meta-item">
+            <div class="meta-key">File</div>
+            <div class="meta-val" id="metaFile">—</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-key">Language</div>
+            <div class="meta-val" id="metaLang">—</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-key">Process Time</div>
+            <div class="meta-val" id="metaTime">—</div>
+          </div>
+        </div>
+
+        <div class="explanation-box" id="explanationBox"></div>
+
+        <div class="result-actions">
+          <button class="result-action-btn" id="shareCardBtn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="18" cy="5" r="3" />
+              <circle cx="6" cy="12" r="3" />
+              <circle cx="18" cy="19" r="3" />
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+            </svg>
+            Share Result
+          </button>
+          <button class="result-action-btn" id="copyResultBtn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+            </svg>
+            Copy Link
+          </button>
+          <button class="result-action-btn" id="downloadBtn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+            Export JSON
+          </button>
+        </div>
+      </div>
     </div>
-  </footer>
 
-</div>
-
-<!-- Share Modal -->
-<div class="modal-overlay" id="shareModal">
-  <div class="share-modal">
-    <button class="modal-close" id="shareModalClose">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-      </svg>
+    <!-- Analyse Button -->
+    <button class="analyse-btn" id="analyseBtn" disabled>
+      <div class="btn-inner">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+        Analyse Voice
+      </div>
     </button>
-    <div style="font-size:14px;font-weight:700;margin-bottom:20px;letter-spacing:-0.5px;">Share Result Card</div>
-    <div class="share-card" id="shareCardPreview">
-      <div class="share-card-logo">Voice<span>ID</span></div>
-      <div class="share-card-result" id="shareCardResult">—</div>
-      <div class="share-card-conf" id="shareCardConf">—</div>
-      <div class="share-card-file" id="shareCardFile">—</div>
+
+    <!-- History -->
+    <div class="history-section">
+      <div class="section-header">
+        <div class="section-title">Recent Analyses</div>
+        <button class="clear-btn" id="clearHistory">Clear all</button>
+      </div>
+      <div class="history-list" id="historyList">
+        <div class="empty-history">No analyses yet. Upload a file to get started.</div>
+      </div>
     </div>
-    <div class="share-btns">
-      <button class="share-btn" id="copyCardTextBtn">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+    <section style="max-width:640px;margin:60px auto 40px;padding:0 20px;color:var(--muted);line-height:1.7;">
+      <h2 style="font-size:1.1rem;color:var(--fg);margin-bottom:8px;">What is VoiceID?</h2>
+      <p style="font-size:0.9rem;margin-bottom:24px;">VoiceID is a free AI voice detector that analyses audio files to
+        determine whether a voice is human or AI-generated. It examines 88 acoustic features — including pitch
+        variation, breathiness, and spectral entropy — that differ between real human speech and synthetic TTS voices.
+      </p>
+
+      <h2 style="font-size:1.1rem;color:var(--fg);margin-bottom:8px;">How to detect AI-generated voices</h2>
+      <p style="font-size:0.9rem;margin-bottom:24px;">Upload any MP3 or WAV file under 10MB. VoiceID's deepfake audio
+        detection model processes the file in seconds and returns a confidence score. No login required. Supports
+        English, Tamil, Hindi, Malayalam, and Telugu.</p>
+
+      <h2 style="font-size:1.1rem;color:var(--fg);margin-bottom:8px;">Who uses an AI voice detector?</h2>
+      <p style="font-size:0.9rem;margin-bottom:24px;">Journalists verifying audio sources, hiring managers screening
+        AI-generated interview responses, podcast editors checking recordings, and anyone who receives a suspicious
+        voice message or phone call.</p>
+
+      <h2 style="font-size:1.1rem;color:var(--fg);margin-bottom:16px;">Frequently Asked Questions</h2>
+
+      <h3 style="font-size:0.95rem;color:var(--fg);margin-bottom:4px;">Is VoiceID free?</h3>
+      <p style="font-size:0.9rem;margin-bottom:16px;">Yes. No login, no payment, no usage limits.</p>
+
+      <h3 style="font-size:0.95rem;color:var(--fg);margin-bottom:4px;">What audio formats does VoiceID support?</h3>
+      <p style="font-size:0.9rem;margin-bottom:16px;">MP3 and WAV files up to 10MB.</p>
+
+      <h3 style="font-size:0.95rem;color:var(--fg);margin-bottom:4px;">How accurate is the AI voice detection?</h3>
+      <p style="font-size:0.9rem;margin-bottom:16px;">The model analyses 88 acoustic features and returns a confidence
+        score. Higher scores indicate a stronger signal. Works best on clear recordings of at least 3 seconds.</p>
+
+      <h3 style="font-size:0.95rem;color:var(--fg);margin-bottom:4px;">Does VoiceID work with Indian language audio?
+      </h3>
+      <p style="font-size:0.9rem;margin-bottom:16px;">Yes. VoiceID supports English, Tamil, Hindi, Malayalam, and Telugu
+        — making it one of the few free deepfake audio detectors with Indian language support.</p>
+    </section>
+    <!-- Footer -->
+    <footer>
+      <div class="footer-text">Built by Mallarpu Deepak Sai &amp; Smriti Kumari</div>
+      <div class="footer-text">
+        <a href="https://human-or-ai-production-8e10.up.railway.app/docs" target="_blank">API Docs →</a>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Share Modal -->
+  <div class="modal-overlay" id="shareModal">
+    <div class="share-modal">
+      <button class="modal-close" id="shareModalClose">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
         </svg>
-        Copy Text
       </button>
-      <button class="share-btn primary" id="tweetBtn">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-        </svg>
-        Share on X
-      </button>
+      <div style="font-size:14px;font-weight:700;margin-bottom:20px;letter-spacing:-0.5px;">Share Result Card</div>
+      <div class="share-card" id="shareCardPreview">
+        <div class="share-card-logo">Voice<span>ID</span></div>
+        <div class="share-card-result" id="shareCardResult">—</div>
+        <div class="share-card-conf" id="shareCardConf">—</div>
+        <div class="share-card-file" id="shareCardFile">—</div>
+      </div>
+      <div class="share-btns">
+        <button class="share-btn" id="copyCardTextBtn">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+          </svg>
+          Copy Text
+        </button>
+        <button class="share-btn primary" id="tweetBtn">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+          </svg>
+          Share on X
+        </button>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- Stats Modal -->
-<div class="modal-overlay" id="statsModal">
-  <div class="stats-modal">
-    <button class="modal-close" id="statsModalClose">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-      </svg>
-    </button>
-    <div class="stats-title">Your Detection Stats</div>
+  <!-- Stats Modal -->
+  <div class="modal-overlay" id="statsModal">
+    <div class="stats-modal">
+      <button class="modal-close" id="statsModalClose">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+      <div class="stats-title">Your Detection Stats</div>
 
-    <!-- Global live counters inside modal -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;">
-      <div style="background:rgba(0,245,196,0.05);border:1px solid rgba(0,245,196,0.2);border-radius:12px;padding:14px;text-align:center;">
-        <div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:500;color:var(--accent)" id="modalGlobalVisitors">—</div>
-        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);margin-top:4px;letter-spacing:1px;text-transform:uppercase;">Total Visitors</div>
+      <!-- Global live counters inside modal -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;">
+        <div
+          style="background:rgba(0,245,196,0.05);border:1px solid rgba(0,245,196,0.2);border-radius:12px;padding:14px;text-align:center;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:500;color:var(--accent)"
+            id="modalGlobalVisitors">—</div>
+          <div
+            style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);margin-top:4px;letter-spacing:1px;text-transform:uppercase;">
+            Total Visitors</div>
+        </div>
+        <div
+          style="background:rgba(0,245,196,0.05);border:1px solid rgba(0,245,196,0.2);border-radius:12px;padding:14px;text-align:center;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:500;color:var(--accent)"
+            id="modalGlobalAnalyses">—</div>
+          <div
+            style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);margin-top:4px;letter-spacing:1px;text-transform:uppercase;">
+            Global Analyses</div>
+        </div>
       </div>
-      <div style="background:rgba(0,245,196,0.05);border:1px solid rgba(0,245,196,0.2);border-radius:12px;padding:14px;text-align:center;">
-        <div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:500;color:var(--accent)" id="modalGlobalAnalyses">—</div>
-        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);margin-top:4px;letter-spacing:1px;text-transform:uppercase;">Global Analyses</div>
-      </div>
-    </div>
 
-    <div class="stats-grid">
-      <div class="stat-box"><div class="stat-num" id="statTotal">0</div><div class="stat-lbl">Your Total</div></div>
-      <div class="stat-box"><div class="stat-num" id="statHuman" style="color:var(--accent)">0</div><div class="stat-lbl">Human</div></div>
-      <div class="stat-box"><div class="stat-num" id="statAI" style="color:var(--danger)">0</div><div class="stat-lbl">AI</div></div>
-    </div>
-    <div class="ratio-bar-wrap">
-      <div class="field-label">Human vs AI Ratio</div>
-      <div class="ratio-bar-track">
-        <div class="ratio-human" id="ratioHuman" style="width:50%"></div>
-        <div class="ratio-ai" id="ratioAI" style="width:50%"></div>
+      <div class="stats-grid">
+        <div class="stat-box">
+          <div class="stat-num" id="statTotal">0</div>
+          <div class="stat-lbl">Your Total</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num" id="statHuman" style="color:var(--accent)">0</div>
+          <div class="stat-lbl">Human</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num" id="statAI" style="color:var(--danger)">0</div>
+          <div class="stat-lbl">AI</div>
+        </div>
       </div>
-      <div class="ratio-labels">
-        <span class="human-lbl" id="ratioHumanPct">—</span>
-        <span class="ai-lbl" id="ratioAIPct">—</span>
+      <div class="ratio-bar-wrap">
+        <div class="field-label">Human vs AI Ratio</div>
+        <div class="ratio-bar-track">
+          <div class="ratio-human" id="ratioHuman" style="width:50%"></div>
+          <div class="ratio-ai" id="ratioAI" style="width:50%"></div>
+        </div>
+        <div class="ratio-labels">
+          <span class="human-lbl" id="ratioHumanPct">—</span>
+          <span class="ai-lbl" id="ratioAIPct">—</span>
+        </div>
       </div>
+      <div class="field-label" style="margin-bottom:8px">Avg Confidence</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:500" id="statAvgConf">—</div>
     </div>
-    <div class="field-label" style="margin-bottom:8px">Avg Confidence</div>
-    <div style="font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:500" id="statAvgConf">—</div>
   </div>
-</div>
-<a href="https://fazier.com" target="_blank"><img src="https://fazier.com/api/v1//public/badges/launch_badges.svg?badge_type=launched&theme=neutral" width=120 alt="Fazier badge" /></a>
-<!-- Toast -->
-<div class="toast" id="toast"></div>
-<script src="index.js"></script>
+  <a href="https://fazier.com" target="_blank"><img
+      src="https://fazier.com/api/v1//public/badges/launch_badges.svg?badge_type=launched&theme=neutral" width=120
+      alt="Fazier badge" /></a>
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+  <script src="index.js"></script>
 </body>
+
 </html>
