@@ -5,59 +5,83 @@
   <meta charset="UTF-8">
   <meta name="google-site-verification" content="UgdryMQ9azzy3jHDT-Cei_ZloKra7YX20MIUBmCc5i4" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VoiceID — Free AI Voice Detector | Human or AI Audio Checker</title>
-  <meta name="description"
-    content="Detect if a voice is AI-generated or human in seconds. Upload any MP3 or WAV file. Supports English, Tamil, Hindi, Malayalam, Telugu. Free. No login required.">
-  <meta name="keywords"
-    content="AI voice detector, deepfake audio detector, human or AI voice, voice detection tool, free AI detector">
-  <meta name="author" content="Mallarpu Deepak Sai">
 
-  <!-- Open Graph (makes LinkedIn/WhatsApp previews look good) -->
-  <meta property="og:title" content="VoiceID — Detect AI Generated Voices Free">
+  <!-- ═══ SEO: Primary ═══ -->
+  <title>VoiceID — Free AI Voice Detector | Deepfake Audio Checker</title>
+  <meta name="description"
+    content="Free AI voice detector. Upload any MP3 or WAV file — get a confidence score in seconds. Detects deepfake and AI-generated voices. Supports English, Tamil, Hindi, Malayalam, Telugu. No login required.">
+  <meta name="keywords"
+    content="AI voice detector, deepfake audio detector, human or AI voice, AI generated voice checker, free deepfake detector, voice authenticity checker, Tamil AI voice detector, Hindi AI voice detector">
+  <meta name="author" content="Mallarpu Deepak Sai">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://mdeepaksai.github.io/human-or-AI/">
+
+  <!-- ═══ SEO: Open Graph ═══ -->
+  <meta property="og:title" content="VoiceID — Free AI Voice Detector | Deepfake Audio Checker">
   <meta property="og:description"
-    content="Upload any audio file and know if it's human or AI in seconds. 88 acoustic features. 5 languages.">
+    content="Upload any audio file and know if it's human or AI in seconds. 88 acoustic features. 5 Indian languages. Free, no login.">
   <meta property="og:url" content="https://mdeepaksai.github.io/human-or-AI/">
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="VoiceID">
+  <meta property="og:image" content="https://mdeepaksai.github.io/human-or-AI/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
 
-  <!-- Twitter card -->
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="VoiceID — Detect AI Generated Voices">
+  <!-- ═══ SEO: Twitter Card ═══ -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="VoiceID — Free AI Voice Detector">
   <meta name="twitter:description"
-    content="Free tool to detect AI-generated voices. Upload MP3 or WAV. Results in seconds.">
+    content="Free tool to detect AI-generated voices. Upload MP3 or WAV. 88 acoustic features. 5 Indian languages. Results in seconds.">
+  <meta name="twitter:image" content="https://mdeepaksai.github.io/human-or-AI/og-image.png">
+  <meta name="twitter:creator" content="@mdeepaksai806">
+
+  <!-- ═══ SEO: Schema Markup ═══ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "VoiceID",
+    "url": "https://mdeepaksai.github.io/human-or-AI/",
+    "description": "Free AI voice detector. Upload MP3 or WAV to detect if audio is human or AI-generated. Analyses 88 acoustic features. Supports English, Tamil, Hindi, Malayalam, Telugu.",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Web",
+    "inLanguage": ["en", "ta", "hi", "ml", "te"],
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Mallarpu Deepak Sai",
+      "url": "https://linkedin.com/in/mdeepaksai/"
+    },
+    "featureList": [
+      "AI voice detection",
+      "Deepfake audio detection",
+      "88 acoustic feature analysis",
+      "5 Indian language support",
+      "Live voice recording",
+      "Confidence score output"
+    ]
+  }
+  </script>
+
+  <!-- ═══ Fonts & Styles ═══ -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link
     href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="index.css">
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "VoiceID",
-  "url": "https://mdeepaksai.github.io/human-or-AI/",
-  "description": "Free AI voice detector. Upload MP3 or WAV to detect if audio is human or AI-generated. Supports English, Tamil, Hindi, Malayalam, Telugu.",
-  "applicationCategory": "UtilityApplication",
-  "operatingSystem": "Web",
-  "inLanguage": ["en", "ta", "hi", "ml", "te"],
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "author": {
-    "@type": "Person",
-    "name": "Mallarpu Deepak Sai"
-  }
-}
-</script>
+
   <style>
-    /* ── Live Stats Bar ── */
     .hero-tagline {
       font-size: 1.1rem;
       color: var(--muted);
       margin-top: 8px;
     }
 
+    /* ── Live Stats Bar ── */
     .live-stats-bar {
       display: flex;
       align-items: center;
@@ -124,28 +148,52 @@
       margin-top: 4px;
     }
 
+    /* ── SEO Content Section ── */
+    .seo-section {
+      max-width: 640px;
+      margin: 60px auto 40px;
+      padding: 0 20px;
+      color: var(--muted);
+      line-height: 1.7;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: 40px;
+    }
+
+    .seo-section h2 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--fg);
+      margin-bottom: 8px;
+      margin-top: 28px;
+      letter-spacing: -0.3px;
+    }
+
+    .seo-section h2:first-child {
+      margin-top: 0;
+    }
+
+    .seo-section h3 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--fg);
+      margin-bottom: 4px;
+      margin-top: 16px;
+    }
+
+    .seo-section p {
+      font-size: 0.875rem;
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+
     @keyframes counterPulse {
-
-      0%,
-      100% {
-        opacity: 0.3;
-      }
-
-      50% {
-        opacity: 1;
-      }
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
     }
 
     @keyframes countUp {
-      from {
-        opacity: 0;
-        transform: translateY(6px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .stat-updated {
@@ -197,7 +245,7 @@
       <p class="hero-sub">Upload any MP3 or WAV file — or record live. Our model analyses 88 acoustic features to
         classify the voice in seconds.</p>
 
-      <!-- ── Live Stats Bar ── -->
+      <!-- Live Stats Bar -->
       <div class="live-stats-bar" id="liveStatsBar">
         <div class="live-stat">
           <div class="live-stat-num loading" id="globalVisitors">—</div>
@@ -221,7 +269,6 @@
           </div>
         </div>
       </div>
-      <!-- ── End Live Stats Bar ── -->
     </div>
 
     <!-- API Key -->
@@ -232,7 +279,8 @@
           <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
           <path d="M7 11V7a5 5 0 0 1 10 0v4" />
         </svg>
-        <input type="password" id="apiKeyInput" placeholder="Enter your API key" value="deeps@simi">
+        <!-- SECURITY FIX: removed hardcoded value="deeps@simi" — load from localStorage instead -->
+        <input type="password" id="apiKeyInput" placeholder="Enter your API key">
         <button class="toggle-key" id="toggleKey" title="Show/hide key">
           <svg id="eyeIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
             stroke-width="2">
@@ -465,40 +513,49 @@
         <div class="empty-history">No analyses yet. Upload a file to get started.</div>
       </div>
     </div>
-    <section style="max-width:640px;margin:60px auto 40px;padding:0 20px;color:var(--muted);line-height:1.7;">
-      <h2 style="font-size:1.1rem;color:var(--fg);margin-bottom:8px;">What is VoiceID?</h2>
-      <p style="font-size:0.9rem;margin-bottom:24px;">VoiceID is a free AI voice detector that analyses audio files to
-        determine whether a voice is human or AI-generated. It examines 88 acoustic features — including pitch
-        variation, breathiness, and spectral entropy — that differ between real human speech and synthetic TTS voices.
-      </p>
 
-      <h2 style="font-size:1.1rem;color:var(--fg);margin-bottom:8px;">How to detect AI-generated voices</h2>
-      <p style="font-size:0.9rem;margin-bottom:24px;">Upload any MP3 or WAV file under 10MB. VoiceID's deepfake audio
-        detection model processes the file in seconds and returns a confidence score. No login required. Supports
-        English, Tamil, Hindi, Malayalam, and Telugu.</p>
+    <!-- ═══ SEO Content Section ═══ -->
+    <section class="seo-section" aria-label="About VoiceID">
+      <h2>What is VoiceID?</h2>
+      <p>VoiceID is a free AI voice detector that analyses audio files to determine whether a voice is human or
+        AI-generated. It examines 88 acoustic features — including pitch variation, breathiness, and spectral entropy
+        — that differ between real human speech and synthetic TTS voices.</p>
 
-      <h2 style="font-size:1.1rem;color:var(--fg);margin-bottom:8px;">Who uses an AI voice detector?</h2>
-      <p style="font-size:0.9rem;margin-bottom:24px;">Journalists verifying audio sources, hiring managers screening
-        AI-generated interview responses, podcast editors checking recordings, and anyone who receives a suspicious
+      <h2>How to detect AI-generated voices</h2>
+      <p>Upload any MP3 or WAV file under 10MB. VoiceID's deepfake audio detection model processes the file in seconds
+        and returns a confidence score. No login required. Supports English, Tamil, Hindi, Malayalam, and Telugu.</p>
+
+      <h2>Who uses an AI voice detector?</h2>
+      <p>Journalists verifying audio sources, hiring managers screening AI-generated interview responses, podcast
+        editors checking recordings, teachers checking student audio submissions, and anyone who receives a suspicious
         voice message or phone call.</p>
 
-      <h2 style="font-size:1.1rem;color:var(--fg);margin-bottom:16px;">Frequently Asked Questions</h2>
+      <h2>Frequently Asked Questions</h2>
 
-      <h3 style="font-size:0.95rem;color:var(--fg);margin-bottom:4px;">Is VoiceID free?</h3>
-      <p style="font-size:0.9rem;margin-bottom:16px;">Yes. No login, no payment, no usage limits.</p>
+      <h3>Is VoiceID free?</h3>
+      <p>Yes. No login, no payment, no usage limits.</p>
 
-      <h3 style="font-size:0.95rem;color:var(--fg);margin-bottom:4px;">What audio formats does VoiceID support?</h3>
-      <p style="font-size:0.9rem;margin-bottom:16px;">MP3 and WAV files up to 10MB.</p>
+      <h3>What audio formats does VoiceID support?</h3>
+      <p>MP3 and WAV files up to 10MB.</p>
 
-      <h3 style="font-size:0.95rem;color:var(--fg);margin-bottom:4px;">How accurate is the AI voice detection?</h3>
-      <p style="font-size:0.9rem;margin-bottom:16px;">The model analyses 88 acoustic features and returns a confidence
-        score. Higher scores indicate a stronger signal. Works best on clear recordings of at least 3 seconds.</p>
+      <h3>How accurate is the AI voice detection?</h3>
+      <p>The model analyses 88 acoustic features and returns a confidence score. Higher scores indicate a stronger
+        signal in either direction. Works best on clear recordings of at least 3 seconds.</p>
 
-      <h3 style="font-size:0.95rem;color:var(--fg);margin-bottom:4px;">Does VoiceID work with Indian language audio?
-      </h3>
-      <p style="font-size:0.9rem;margin-bottom:16px;">Yes. VoiceID supports English, Tamil, Hindi, Malayalam, and Telugu
-        — making it one of the few free deepfake audio detectors with Indian language support.</p>
+      <h3>Does VoiceID work with Indian language audio?</h3>
+      <p>Yes. VoiceID supports English, Tamil, Hindi, Malayalam, and Telugu — making it one of the few free deepfake
+        audio detectors with Indian language support.</p>
+
+      <h3>What is deepfake audio detection?</h3>
+      <p>Deepfake audio detection is the process of identifying whether a voice recording was produced by a real human
+        or generated by AI text-to-speech (TTS) or voice cloning software. VoiceID uses acoustic feature analysis to
+        classify audio without requiring any personal data or login.</p>
+
+      <h3>Can VoiceID detect voice cloning?</h3>
+      <p>VoiceID is designed to detect AI-synthesised voices including those produced by TTS systems and voice cloning
+        tools. Results are returned as a confidence score rather than a binary verdict.</p>
     </section>
+
     <!-- Footer -->
     <footer>
       <div class="footer-text">Built by Mallarpu Deepak Sai &amp; Smriti Kumari</div>
@@ -555,7 +612,6 @@
       </button>
       <div class="stats-title">Your Detection Stats</div>
 
-      <!-- Global live counters inside modal -->
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;">
         <div
           style="background:rgba(0,245,196,0.05);border:1px solid rgba(0,245,196,0.2);border-radius:12px;padding:14px;text-align:center;">
@@ -604,12 +660,32 @@
       <div style="font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:500" id="statAvgConf">—</div>
     </div>
   </div>
-  <a href="https://fazier.com" target="_blank"><img
-      src="https://fazier.com/api/v1//public/badges/launch_badges.svg?badge_type=launched&theme=neutral" width=120
-      alt="Fazier badge" /></a>
-  <!-- Toast -->
+
+  <a href="https://fazier.com" target="_blank">
+    <img src="https://fazier.com/api/v1//public/badges/launch_badges.svg?badge_type=launched&theme=neutral" width="120"
+      alt="VoiceID launched on Fazier" />
+  </a>
+
   <div class="toast" id="toast"></div>
   <script src="index.js"></script>
-</body>
 
+  <!-- API Key: load from localStorage so it's never hardcoded in HTML -->
+  <script>
+    (function () {
+      const stored = localStorage.getItem('voiceid_api_key');
+      if (stored) {
+        const input = document.getElementById('apiKeyInput');
+        if (input) input.value = stored;
+      }
+      // Save on change
+      const input = document.getElementById('apiKeyInput');
+      if (input) {
+        input.addEventListener('change', function () {
+          localStorage.setItem('voiceid_api_key', this.value);
+        });
+      }
+    })();
+  </script>
+
+</body>
 </html>
