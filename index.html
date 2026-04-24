@@ -187,13 +187,27 @@
     }
 
     @keyframes counterPulse {
-      0%, 100% { opacity: 0.3; }
-      50% { opacity: 1; }
+
+      0%,
+      100% {
+        opacity: 0.3;
+      }
+
+      50% {
+        opacity: 1;
+      }
     }
 
     @keyframes countUp {
-      from { opacity: 0; transform: translateY(6px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .stat-updated {
@@ -671,16 +685,20 @@
 
   <!-- API Key: load from localStorage so it's never hardcoded in HTML -->
   <script>
-    (function () {
+    (function ()
+    {
       const stored = localStorage.getItem('voiceid_api_key');
-      if (stored) {
+      if (stored)
+      {
         const input = document.getElementById('apiKeyInput');
         if (input) input.value = stored;
       }
       // Save on change
       const input = document.getElementById('apiKeyInput');
-      if (input) {
-        input.addEventListener('change', function () {
+      if (input)
+      {
+        input.addEventListener('change', function ()
+        {
           localStorage.setItem('voiceid_api_key', this.value);
         });
       }
@@ -688,4 +706,5 @@
   </script>
 
 </body>
+
 </html>

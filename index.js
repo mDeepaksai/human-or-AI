@@ -94,6 +94,7 @@ const spectrogramWrap   = document.getElementById('spectrogramWrap');
 const spectrogramCanvas = document.getElementById('spectrogramCanvas');
 
 const API_BASE = 'https://human-or-ai-production-8e10.up.railway.app';
+const DEFAULT_API_KEY = 'deeps@simi';
 
 let selectedFile     = null;
 let selectedLang     = 'english';
@@ -109,6 +110,19 @@ let analyserNode     = null;
 let micStream        = null;
 let audioCtxMic      = null;
 let micAnimFrame     = null;
+
+// Load API key from localStorage or use default
+(function() {
+  const stored = localStorage.getItem('voiceid_api_key');
+  if (stored) {
+    apiKeyInput.value = stored;
+  } else {
+    apiKeyInput.value = DEFAULT_API_KEY;
+  }
+  apiKeyInput.addEventListener('change', function() {
+    localStorage.setItem('voiceid_api_key', this.value);
+  });
+})();
 
 function getBestMimeType() {
   const types = ['audio/webm;codecs=opus','audio/webm','audio/ogg;codecs=opus','audio/ogg','audio/mp4'];
@@ -365,8 +379,8 @@ analyseBtn.addEventListener('click', analyse);
 
 async function analyse() {
   if (!selectedFile) return;
-  const apiKey = apiKeyInput.value.trim();
-  if (!apiKey) { showError('Please enter your API key.'); return; }
+  // Use entered key, fallback to default if empty
+  const apiKey = apiKeyInput.value.trim() || DEFAULT_API_KEY;
   analyseBtn.disabled = true; loadingState.classList.add('visible');
   resultCard.classList.remove('visible'); hideError();
   const formData = new FormData();
