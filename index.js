@@ -93,7 +93,7 @@ const totalTimeEl       = document.getElementById('totalTime');
 const spectrogramWrap   = document.getElementById('spectrogramWrap');
 const spectrogramCanvas = document.getElementById('spectrogramCanvas');
 
-const API_BASE = 'human-or-ai-production-19a1.up.railway.app';
+const API_BASE = 'https://human-or-ai-production-19a1.up.railway.app';
 const DEFAULT_API_KEY = 'deeps@simi';
 
 let selectedFile     = null;
