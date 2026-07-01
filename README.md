@@ -1,34 +1,21 @@
-# VoiceID — Free AI Voice Detector
+# VoiceID — AI Voice Detector
 
-![Live](https://img.shields.io/badge/Live-Demo-brightgreen)
-![FastAPI](https://img.shields.io/badge/Built%20with-FastAPI-blue)
-![Free](https://img.shields.io/badge/Free-No%20Login-orange)
-![Languages](https://img.shields.io/badge/Languages-5%20Indian-red)
+> Detect whether a voice is human or AI-generated. Free. No login. No signup.
 
-> Detect if a voice is human or AI-generated in seconds.
+🔗 **[Try it live →](https://mdeepaksai.github.io/human-or-AI/?ref=github)**
 
-🔴 **Live Demo:** https://mdeepaksai.github.io/human-or-AI/
-📖 **API Docs:** https://human-or-ai-production-8e10.up.railway.app/docs
-
----
-
-## Screenshots
-
-![VoiceID Hero](/logo.png)
-
-![VoiceID Upload](/imaage.png)
+![GitHub Pages](https://img.shields.io/badge/Frontend-GitHub%20Pages-blue)
+![Railway](https://img.shields.io/badge/Backend-Railway-purple)
+![Supabase](https://img.shields.io/badge/DB-Supabase-green)
+![License](https://img.shields.io/badge/License-MIT-yellow)
 
 ---
 
 ## What is VoiceID?
 
-VoiceID is a free audio forensics tool that analyses any voice 
-recording and classifies it as human or AI-generated. It extracts 
-88 acoustic features from the audio and runs them through a 
-trained classification model to give you a confidence score.
+VoiceID is a free audio forensics tool that analyses any voice recording and classifies it as human or AI-generated. It extracts **88 acoustic features** from the audio and runs them through a trained classification model to give you a confidence score.
 
-Built as a real deployed product — not a demo or college project.
-Currently live with 90+ visitors and 26+ analyses run.
+**239+ visitors · 66+ analyses run · Live since April 2026**
 
 ---
 
@@ -47,10 +34,10 @@ Currently live with 90+ visitors and 26+ analyses run.
 
 ## How It Works
 
-1. Upload any MP3 or WAV file (or record live)
+1. Upload any MP3 or WAV file — or record live in the browser
 2. Select the language of the audio
-3. Click Analyse Voice
-4. Get a Human or AI classification with confidence score
+3. Click **Analyse Voice**
+4. Get a **Human** or **AI** classification with confidence score
 5. Export results as JSON or share directly
 
 ---
@@ -58,25 +45,20 @@ Currently live with 90+ visitors and 26+ analyses run.
 ## Tech Stack
 
 | Layer | Technology |
-|-------|-----------|
+|---|---|
 | Frontend | HTML, CSS, JavaScript |
 | Backend | FastAPI, Python |
 | ML Model | Custom classifier, 88 acoustic features |
 | Deployment | Railway (backend), GitHub Pages (frontend) |
-| Database | Supabase (live visitor counter) |
+| Database | Supabase (live counters) |
 
 ---
 
 ## API Usage
 
-The backend API is publicly documented and testable.
+Backend API is publicly documented and testable at the link below.
 
 **Endpoint:** `POST /api/voice-detection`
-
-**Headers:**
-```
-x-api-key: your_api_key
-```
 
 **Form Data:**
 ```
@@ -94,25 +76,13 @@ language: english
 }
 ```
 
-Full API documentation available at:
-https://human-or-ai-production-8e10.up.railway.app/docs
+📄 **[Full API Docs →](https://human-or-ai-production-8e10.up.railway.app/docs)**
 
 ---
 
-## Live Stats
+## Why We Built This
 
-- 90+ visitors since launch
-- 26+ analyses run
-- 5 languages supported
-- Deployed and live since April 2026
-
----
-
-## Why I Built This
-
-Deepfake audio is a growing threat. Most detection tools only 
-support English. I built VoiceID to support Indian languages — 
-Tamil, Hindi, Malayalam, and Telugu — because nobody else was.
+Deepfake audio is a growing threat. Most detection tools only support English. We built VoiceID to support Indian languages — Tamil, Hindi, Malayalam, and Telugu — because nobody else was.
 
 ---
 
@@ -121,9 +91,8 @@ Tamil, Hindi, Malayalam, and Telugu — because nobody else was.
 **Mallarpu Deepak Sai** — 2nd year ECE @ KIT, Tamil Nadu
 **Smriti Kumari**
 
-Portfolio: https://mdeepaksai.github.io/portfolio/
-LinkedIn: https://linkedin.com/in/mdeepaksai
+🌐 [Portfolio](https://mdeepaksai.github.io/portfolio/) · 💼 [LinkedIn](https://linkedin.com/in/mdeepaksai)
 
 ---
 
-⭐ If you find this useful, star this repo!
+⭐ If you find this useful, star the repo!
